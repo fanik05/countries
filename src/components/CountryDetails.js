@@ -1,21 +1,16 @@
-const CountryDetails = ({ country }) => (
+const CountryDetails = ({ name, capital, area, languages, flags }) => (
   <>
-    <h2>{country[0].name.common}</h2>
-    <div>capital {country[0].capital[0]}</div>
-    <div>capital {country[0].area}</div>
+    <h2>{name.common}</h2>
+    <div>capital {capital[0]}</div>
+    <div>capital {area}</div>
     <h3>languages: </h3>
     <ul>
-      {Object.values(country[0].languages).map((language) => (
+      {Object.values(languages).map(language => (
         <li key={language}>{language}</li>
       ))}
     </ul>
-    <img
-      src={country[0].flags.svg}
-      alt={`${country[0].name.common} flag`}
-      width="300"
-      height="200"
-    />
+    <img src={flags.svg} alt={`${name.common} flag`} width="300" height="200" />
   </>
-);
+)
 
-export default CountryDetails;
+export default CountryDetails
