@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import restCountries from './apis/restCountries'
 import CountryDetails from './components/CountryDetails'
 import CountryList from './components/CountryList'
 
@@ -10,9 +10,7 @@ const App = () => {
 
   useEffect(
     () =>
-      axios
-        .get('https://restcountries.com/v3.1/all')
-        .then(response => setCountries(response.data)),
+      restCountries.get('/all').then(response => setCountries(response.data)),
     []
   )
 
@@ -26,11 +24,12 @@ const App = () => {
     [countries, query]
   )
 
-  const renderFiltered = query.length ? (
-    filtered.length ? (
-      filtered.length === 1 ? (
+  const numberOfFilteredCoutries = filtered.length
+  const renderFiltered = query ? (
+    numberOfFilteredCoutries ? (
+      numberOfFilteredCoutries === 1 ? (
         <CountryDetails {...filtered[0]} />
-      ) : filtered.length <= 10 ? (
+      ) : numberOfFilteredCoutries <= 10 ? (
         <CountryList countries={filtered} />
       ) : (
         'Too many matches, specify another filter'
