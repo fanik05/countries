@@ -7,7 +7,9 @@ const CountryListItem = ({ country }) => {
   return (
     <>
       {country.name.common}{' '}
-      <button onClick={() => setShowDetails(!showDetails)}>show</button>
+      <button onClick={() => setShowDetails(!showDetails)}>
+        {showDetails ? 'hide' : 'show'}
+      </button>
       <div>{showDetails && <CountryDetails {...country} />}</div>
     </>
   )

@@ -8,6 +8,7 @@ const CountryDetails = ({
   languages,
   flags,
   capitalInfo,
+  latlng,
 }) => {
   const [capitalWeather, setCapitalWeather] = useState(null)
 
@@ -15,12 +16,12 @@ const CountryDetails = ({
     openWeatherMap
       .get('/weather', {
         params: {
-          lat: capitalInfo.latlng[0],
-          lon: capitalInfo.latlng[1],
+          lat: capitalInfo.latlng ? capitalInfo.latlng[0] : latlng[0],
+          lon: capitalInfo.latlng ? capitalInfo.latlng[1] : latlng[1],
         },
       })
       .then(response => setCapitalWeather(response.data))
-  }, [capitalInfo])
+  }, [capitalInfo, latlng])
 
   return (
     <>
